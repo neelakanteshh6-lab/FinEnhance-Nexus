@@ -6,61 +6,35 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DATABASE = os.path.join(
-    BASE_DIR,
-    "database",
-    "finenhance.db"
-)
-
-SCHEMA = os.path.join(
-    BASE_DIR,
-    "database",
-    "schema.sql"
-)
+DATABASE = os.path.join(BASE_DIR, "database", "finenhance.db")
+SCHEMA = os.path.join(BASE_DIR, "database", "schema.sql")
 
 app = Flask(__name__)
-
 CORS(app)
-
 
 def get_db():
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
     return conn
 
-
 def initialize_database():
-    os.makedirs(
-        os.path.dirname(DATABASE),
-        exist_ok=True
-    )
+    os.makedirs(os.path.dirname(DATABASE), exist_ok=True)
 
     if not os.path.exists(SCHEMA):
-        raise FileNotFoundError(
-            f"schema.sql not found at: {SCHEMA}"
-        )
+        raise FileNotFoundError(f"schema.sql not found at: {SCHEMA}")
 
     conn = sqlite3.connect(DATABASE)
 
-    with open(
-        SCHEMA,
-        "r",
-        encoding="utf-8"
-    ) as file:
+    with open(SCHEMA, "r", encoding="utf-8") as file:
         schema = file.read()
 
     conn.executescript(schema)
-
     conn.commit()
     conn.close()
 
     print("Database initialized successfully!")
 
-
-# Initialize database when the application starts.
-# This is required when running with Gunicorn on Render.
 initialize_database()
-
 
 @app.route("/", methods=["GET"])
 def home():
@@ -69,7 +43,6 @@ def home():
         "message": "FinEnhance-Nexus backend is running"
     })
 
-
 @app.route("/api/test", methods=["GET"])
 def test():
     return jsonify({
@@ -77,10 +50,8 @@ def test():
         "message": "Backend connection successful"
     })
 
-
 @app.route("/api/signup", methods=["POST"])
 def signup():
-
     data = request.get_json(silent=True)
 
     if not data:
@@ -89,28 +60,12 @@ def signup():
             "message": "No data received"
         }), 400
 
-    first_name = str(
-        data.get("first_name", "")
-    ).strip()
+    first_name = str(data.get("first_name", "")).strip()
+    last_name = str(data.get("last_name", "")).strip()
+    email = str(data.get("email", "")).strip().lower()
+    password = str(data.get("password", ""))
 
-    last_name = str(
-        data.get("last_name", "")
-    ).strip()
-
-    email = str(
-        data.get("email", "")
-    ).strip().lower()
-
-    password = str(
-        data.get("password", "")
-    )
-
-    if (
-        not first_name
-        or not last_name
-        or not email
-        or not password
-    ):
+    if not first_name or not last_name or not email or not password:
         return jsonify({
             "success": False,
             "message": "All fields are required"
@@ -122,14 +77,10 @@ def signup():
             "message": "Password must contain at least 6 characters"
         }), 400
 
-    password_hash = generate_password_hash(
-        password
-    )
-
+    password_hash = generate_password_hash(password)
     conn = get_db()
 
     try:
-
         conn.execute(
             """
             INSERT INTO users (
@@ -140,12 +91,7 @@ def signup():
             )
             VALUES (?, ?, ?, ?)
             """,
-            (
-                email,
-                first_name,
-                last_name,
-                password_hash
-            )
+            (email, first_name, last_name, password_hash)
         )
 
         conn.commit()
@@ -156,20 +102,16 @@ def signup():
         }), 201
 
     except sqlite3.IntegrityError:
-
         return jsonify({
             "success": False,
             "message": "Email already registered"
         }), 409
 
     finally:
-
         conn.close()
-
 
 @app.route("/api/login", methods=["POST"])
 def login():
-
     data = request.get_json(silent=True)
 
     if not data:
@@ -178,13 +120,8 @@ def login():
             "message": "No data received"
         }), 400
 
-    email = str(
-        data.get("email", "")
-    ).strip().lower()
-
-    password = str(
-        data.get("password", "")
-    )
+    email = str(data.get("email", "")).strip().lower()
+    password = str(data.get("password", ""))
 
     if not email or not password:
         return jsonify({
@@ -195,7 +132,6 @@ def login():
     conn = get_db()
 
     try:
-
         user = conn.execute(
             """
             SELECT
@@ -211,21 +147,15 @@ def login():
         ).fetchone()
 
     finally:
-
         conn.close()
 
     if user is None:
-
         return jsonify({
             "success": False,
             "message": "Invalid email or password"
         }), 401
 
-    if not check_password_hash(
-        user["password_hash"],
-        password
-    ):
-
+    if not check_password_hash(user["password_hash"], password):
         return jsonify({
             "success": False,
             "message": "Invalid email or password"
@@ -242,14 +172,11 @@ def login():
         }
     }), 200
 
-
 @app.route("/api/sectors", methods=["GET"])
 def get_sectors():
-
     conn = get_db()
 
     try:
-
         sectors = conn.execute(
             """
             SELECT
@@ -261,7 +188,6 @@ def get_sectors():
         ).fetchall()
 
     finally:
-
         conn.close()
 
     return jsonify({
@@ -275,17 +201,11 @@ def get_sectors():
         ]
     }), 200
 
-
-@app.route(
-    "/api/sectors/<int:sector_id>/sub-sectors",
-    methods=["GET"]
-)
+@app.route("/api/sectors/<int:sector_id>/sub-sectors", methods=["GET"])
 def get_sub_sectors(sector_id):
-
     conn = get_db()
 
     try:
-
         sector = conn.execute(
             """
             SELECT
@@ -298,7 +218,6 @@ def get_sub_sectors(sector_id):
         ).fetchone()
 
         if sector is None:
-
             return jsonify({
                 "success": False,
                 "message": "Sector not found"
@@ -317,7 +236,6 @@ def get_sub_sectors(sector_id):
         ).fetchall()
 
     finally:
-
         conn.close()
 
     return jsonify({
@@ -335,9 +253,7 @@ def get_sub_sectors(sector_id):
         ]
     }), 200
 
-
 if __name__ == "__main__":
-
     app.run(
         host="0.0.0.0",
         port=5000,

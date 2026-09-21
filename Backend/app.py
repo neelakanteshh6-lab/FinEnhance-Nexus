@@ -213,6 +213,54 @@ def get_sectors():
     }), 200
 
 
+@app.route("/api/sectors/<int:sector_id>/sub-sectors", methods=["GET"])
+def get_sub_sectors(sector_id):
+    conn = get_db()
+
+    try:
+        sector = conn.execute(
+            """
+            SELECT id, name
+            FROM sectors
+            WHERE id = ?
+            """,
+            (sector_id,)
+        ).fetchone()
+
+        if sector is None:
+            return jsonify({
+                "success": False,
+                "message": "Sector not found"
+            }), 404
+
+        sub_sectors = conn.execute(
+            """
+            SELECT id, name
+            FROM sub_sectors
+            WHERE sector_id = ?
+            ORDER BY name
+            """
+        , (sector_id,)).fetchall()
+
+    finally:
+        conn.close()
+
+    return jsonify({
+        "success": True,
+        "sector": {
+            "id": sector["id"],
+            "name": sector["name"]
+        },
+        "sub_sectors": [
+            {
+                "id": sub_sector["id"],
+                "name": sub_sector["name"]
+            }
+            for sub_sector in sub_sectors
+        ]
+    }), 200
+
+
 if __name__ == "__main__":
     initialize_database()
 

@@ -3,117 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinEnhance Nexus</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden; /* Prevents scrollbars during animation scaling */
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            padding: 40px 20px;
-        }
-        
-        /* Pop-up Animation Keyframes */
-        @keyframes popUp {
-            0% {
-                opacity: 0;
-                transform: scale(0.5) translateY(30px);
-            }
-            70% {
-                transform: scale(1.05) translateY(-5px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        h1 {
-            font-size: 60px;
-            font-weight: 800;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            /* Applying the pop-up animation */
-            animation: popUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-        p {
-            font-size: 20px;
-            color: #cbd5e1;
-            margin-bottom: 35px;
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out 0.3s forwards; /* Slight delayed fade for subtext */
-        }
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out 0.5s forwards;
-        }
-        .btn:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-        }
-        .login-text {
-            margin-top: 25px;
-            font-size: 16px;
-            color: #cbd5e1;
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out 0.7s forwards;
-        }
-        .login-link {
-            color: #60a5fa;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .login-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Supporting fade-in animation for other elements */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <title>Beat Inflation | FinEnhance</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <div class="container">
-        <h1>BEAT INFLATION</h1>
-        <p>Make informed decisions. Explore the stock market.</p>
-        <a href="https://neelakanteshh6-lab.github.io/FinEnhance-Nexus/login.html" class="btn">GET STARTED</a>
-        <div class="login-text">
-            Already have an account?
-            <a href="https://neelakanteshh6-lab.github.io/FinEnhance-Nexus/login.html" class="login-link">Login</a>
+<body class="landing-page">
+
+    <main class="landing-container">
+
+        <div id="beatText" class="beat-text">
+            BEAT INFLATION
         </div>
-    </div>
+
+        <div id="landingContent" class="landing-content">
+            <p>
+                Make informed decisions. Explore the stock market.
+            </p>
+
+            <button onclick="goToSignup()">
+                GET STARTED
+            </button>
+
+            <p class="login-link">
+                Already have an account?
+                <a href="login.html">Login</a>
+            </p>
+        </div>
+
+    </main>
+
+    <script src="js/index.js"></script>
 </body>
 </html>

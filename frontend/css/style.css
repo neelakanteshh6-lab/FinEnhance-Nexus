@@ -1,7 +1,7 @@
 /* =========================================
    FINENHANCE NEXUS
    FUTURISTIC FINTECH THEME
-   WITH ANIMATED MARKET CANDLESTICKS
+   WITH CONTINUOUS MARKET CANDLESTICKS
 ========================================= */
 
 
@@ -45,7 +45,6 @@ body {
     background: var(--bg-primary);
     color: var(--text-primary);
 
-    /* Allow vertical scrolling */
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -67,11 +66,13 @@ button {
 
 .landing-page {
     min-height: 100vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
 
     position: relative;
+
     overflow: hidden;
 
     background:
@@ -128,7 +129,6 @@ button {
 }
 
 @keyframes rotateGlow {
-
     from {
         transform: rotate(0deg);
     }
@@ -191,6 +191,7 @@ button {
 
 .landing-content.show {
     opacity: 1;
+
     transform: translateY(0);
 }
 
@@ -431,23 +432,14 @@ button:active {
 .sectors-page,
 .subsectors-page {
 
-    /*
-       min-height allows the page to grow
-       when there are many sector cards.
-    */
-
     min-height: 100vh;
 
     position: relative;
 
     isolation: isolate;
 
-    /*
-       IMPORTANT:
-       Allow vertical scrolling.
-    */
-
     overflow-x: hidden;
+
     overflow-y: auto;
 
     background:
@@ -534,15 +526,18 @@ button:active {
     opacity: 0.30;
 }
 
+
+/* =========================================
+   CONTINUOUS CANDLE TRACK
+========================================= */
+
 .candle-chart {
 
     position: absolute;
 
     top: 80px;
 
-    left: -5%;
-
-    width: 110%;
+    left: 0;
 
     height: 650px;
 
@@ -553,11 +548,42 @@ button:active {
     gap: 35px;
 
     /*
-       FASTER HORIZONTAL MARKET MOVEMENT
+       IMPORTANT:
+
+       The width is based on the content.
+
+       The complete candle track contains
+       TWO identical candle groups.
+    */
+
+    width: max-content;
+
+    /*
+       Continuous LEFT -> RIGHT movement.
+
+       Linear keeps the speed constant.
     */
 
     animation:
-        candleMarketMove 20s ease-in-out infinite;
+        candleMarketMove 18s linear infinite;
+
+    will-change: transform;
+}
+
+
+/* =========================================
+   CANDLE GROUP
+========================================= */
+
+.candle-group {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 35px;
+
+    flex-shrink: 0;
 }
 
 
@@ -573,14 +599,19 @@ button:active {
 
     width: 12px;
 
+    flex-shrink: 0;
+
     border-radius: 2px;
 
     /*
-       FASTER UP/DOWN MOVEMENT
+       Continuous floating animation.
+
+       This is independent from the
+       horizontal movement.
     */
 
     animation:
-        candleFloat 5s ease-in-out infinite;
+        candleFloat 4s ease-in-out infinite;
 }
 
 
@@ -736,8 +767,35 @@ button:active {
 
 
 /* =========================================
-   CANDLE ANIMATIONS
+   CONTINUOUS CANDLE ANIMATIONS
 ========================================= */
+
+
+/*
+   CANDLES MOVE FROM LEFT TO RIGHT.
+
+   Because the candle groups are duplicated,
+   the animation can loop continuously.
+*/
+
+@keyframes candleMarketMove {
+
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+
+/*
+   INDIVIDUAL CANDLE FLOATING.
+
+   This gives each candle a slight
+   independent vertical movement.
+*/
 
 @keyframes candleFloat {
 
@@ -747,33 +805,86 @@ button:active {
     }
 
     50% {
-        /*
-           Increased from 12px to 18px
-           for more visible movement.
-        */
-
         transform: translateY(-18px);
     }
 }
 
-@keyframes candleMarketMove {
 
-    0% {
-        transform: translateX(0);
-    }
+/* =========================================
+   DIFFERENT ANIMATION DELAYS
+   FOR NATURAL MARKET MOVEMENT
+========================================= */
 
-    50% {
-        /*
-           Increased from 45px to 90px
-           for more visible horizontal movement.
-        */
+.c1 {
+    animation-delay: -0.2s;
+}
 
-        transform: translateX(-90px);
-    }
+.c2 {
+    animation-delay: -0.8s;
+}
 
-    100% {
-        transform: translateX(0);
-    }
+.c3 {
+    animation-delay: -1.4s;
+}
+
+.c4 {
+    animation-delay: -2s;
+}
+
+.c5 {
+    animation-delay: -2.6s;
+}
+
+.c6 {
+    animation-delay: -3.2s;
+}
+
+.c7 {
+    animation-delay: -3.8s;
+}
+
+.c8 {
+    animation-delay: -4.4s;
+}
+
+.c9 {
+    animation-delay: -5s;
+}
+
+.c10 {
+    animation-delay: -5.6s;
+}
+
+.c11 {
+    animation-delay: -6.2s;
+}
+
+.c12 {
+    animation-delay: -6.8s;
+}
+
+.c13 {
+    animation-delay: -7.4s;
+}
+
+.c14 {
+    animation-delay: -8s;
+}
+
+.c15 {
+    animation-delay: -8.6s;
+}
+
+.c16 {
+    animation-delay: -9.2s;
+}
+
+.c17 {
+    animation-delay: -9.8s;
+}
+
+.c18 {
+    animation-delay: -10.4s;
 }
 
 
@@ -840,10 +951,6 @@ button:active {
     z-index: 2;
 
     min-height: 100vh;
-
-    /*
-       Let content determine page height.
-    */
 
     width: 100%;
 }
@@ -923,10 +1030,6 @@ button:active {
     position: relative;
 
     z-index: 1;
-
-    /*
-       Important when many cards are loaded.
-    */
 
     width: 100%;
 
@@ -1071,9 +1174,12 @@ button:active {
 
         gap: 22px;
 
-        width: 140%;
+        top: 70px;
+    }
 
-        left: -20%;
+    .candle-group {
+
+        gap: 22px;
     }
 
     .market-background {
@@ -1094,12 +1200,10 @@ button:active {
 @media (max-width: 600px) {
 
     .name-row {
-
         grid-template-columns: 1fr;
     }
 
     .auth-card {
-
         padding: 25px;
     }
 
@@ -1146,8 +1250,7 @@ button:active {
 
     .sectors-grid {
 
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
 
         gap: 16px;
     }

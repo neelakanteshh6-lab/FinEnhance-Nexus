@@ -1,32 +1,130 @@
+
+/* ================================
+   FINENHANCE NEXUS
+   FUTURISTIC FINTECH THEME
+================================ */
+
+/* GLOBAL RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #010800;
-    color: white;
+:root {
+    --bg-primary: #07111f;
+    --bg-secondary: #0b1728;
+    --bg-card: rgba(15, 35, 54, 0.78);
+    --bg-input: #081522;
+
+    --accent: #00e676;
+    --accent-dark: #00bfa5;
+    --accent-blue: #38bdf8;
+
+    --text-primary: #f1fff7;
+    --text-secondary: #9bb2c5;
+    --border: rgba(0, 230, 118, 0.16);
+
+    --shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
 }
 
-/* LANDING PAGE */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+
+/* ================================
+   LANDING PAGE
+================================ */
 
 .landing-page {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background:
-        radial-gradient(circle at center, #202020 0%, #080808 60%);
+    position: relative;
     overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(0, 230, 118, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(56, 189, 248, 0.10),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #07111f,
+            #0b1728,
+            #06151c
+        );
+}
+
+/* Decorative glowing circles */
+
+.landing-page::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 230, 118, 0.10);
+    box-shadow:
+        0 0 80px rgba(0, 230, 118, 0.06),
+        inset 0 0 80px rgba(0, 230, 118, 0.03);
+    animation: rotateGlow 20s linear infinite;
+}
+
+.landing-page::after {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(56, 189, 248, 0.06);
+    animation: rotateGlow 35s linear infinite reverse;
+}
+
+@keyframes rotateGlow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .landing-container {
     text-align: center;
     width: 100%;
     padding: 30px;
+    position: relative;
+    z-index: 1;
 }
+
+/* Main BEAT INFLATION text */
 
 .beat-text {
     font-size: clamp(45px, 9vw, 120px);
@@ -34,9 +132,17 @@ body {
     letter-spacing: 8px;
     opacity: 0;
     transform: scale(0.5);
+
+    color: var(--text-primary);
+
+    text-shadow:
+        0 0 10px rgba(0, 230, 118, 0.35),
+        0 0 40px rgba(0, 230, 118, 0.10);
+
     transition:
         opacity 1s ease,
-        transform 1s ease;
+        transform 1s ease,
+        text-shadow 0.5s ease;
 }
 
 .beat-text.show {
@@ -61,60 +167,138 @@ body {
 
 .landing-content p {
     margin: 15px 0;
-    color: #bbbbbb;
+    color: var(--text-secondary);
     font-size: 18px;
 }
 
+
+/* ================================
+   GLOBAL BUTTONS
+================================ */
+
 button {
-    border: none;
-    cursor: pointer;
-    background: white;
-    color: black;
+    background: linear-gradient(
+        135deg,
+        var(--accent),
+        var(--accent-dark)
+    );
+
+    color: #03150c;
     padding: 14px 28px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: bold;
-    transition: 0.3s;
+
+    box-shadow:
+        0 0 20px rgba(0, 230, 118, 0.12);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    opacity: 0.85;
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 25px rgba(0, 230, 118, 0.35),
+        0 8px 25px rgba(0, 0, 0, 0.25);
+
+    filter: brightness(1.08);
+}
+
+button:active {
+    transform: translateY(-1px);
 }
 
 .login-link a,
 .switch-page a {
-    color: white;
+    color: var(--accent);
     font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-/* AUTH PAGES */
+.login-link a:hover,
+.switch-page a:hover {
+    color: var(--accent-blue);
+}
+
+
+/* ================================
+   AUTHENTICATION PAGES
+================================ */
 
 .auth-container {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
     background:
-        radial-gradient(circle at center, #202020, #070707);
+        radial-gradient(
+            circle at 15% 25%,
+            rgba(0, 230, 118, 0.10),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(56, 189, 248, 0.08),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #07111f,
+            #0b1728,
+            #06151c
+        );
+
     padding: 20px;
 }
+
+/* Glassmorphism authentication card */
 
 .auth-card {
     width: 100%;
     max-width: 450px;
-    background: #151515;
+
+    background: var(--bg-card);
     padding: 40px;
-    border-radius: 18px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+
+    border-radius: 22px;
+    border: 1px solid var(--border);
+
+    box-shadow:
+        var(--shadow),
+        0 0 40px rgba(0, 230, 118, 0.04);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    animation: cardAppear 0.8s ease;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .auth-card h1 {
     font-size: 34px;
     margin-bottom: 8px;
+
+    color: var(--text-primary);
 }
 
 .subtitle {
-    color: #999;
+    color: var(--text-secondary);
     margin-bottom: 30px;
 }
 
@@ -122,21 +306,39 @@ button:hover {
     display: block;
     margin: 16px 0 8px;
     font-size: 14px;
-    color: #ccc;
+    color: #c8d9e4;
 }
 
 .auth-card input {
     width: 100%;
     padding: 14px;
-    border: 1px solid #333;
-    border-radius: 8px;
-    background: #0c0c0c;
-    color: white;
+
+    border: 1px solid rgba(155, 178, 197, 0.20);
+    border-radius: 10px;
+
+    background: var(--bg-input);
+    color: var(--text-primary);
+
     outline: none;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.auth-card input::placeholder {
+    color: #5f7587;
 }
 
 .auth-card input:focus {
-    border-color: white;
+    border-color: var(--accent);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 230, 118, 0.10),
+        0 0 15px rgba(0, 230, 118, 0.05);
+
+    background: #0b1c2b;
 }
 
 .auth-card button {
@@ -154,41 +356,77 @@ button:hover {
 #loginMessage {
     margin-top: 18px;
     text-align: center;
-    color: #ddd;
+    color: #c8d9e4;
 }
 
 .switch-page {
     text-align: center;
     margin-top: 25px;
-    color: #888;
+    color: #7e96a8;
 }
 
-/* SECTORS */
+
+/* ================================
+   SECTORS PAGE
+================================ */
 
 .sectors-page {
     min-height: 100vh;
-    background: #080808;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0, 230, 118, 0.05),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #07111f,
+            #091522,
+            #06121c
+        );
 }
+
+/* NAVBAR */
 
 .navbar {
     height: 70px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     padding: 0 5%;
-    border-bottom: 1px solid #222;
-    background: #0d0d0d;
+
+    border-bottom: 1px solid rgba(0, 230, 118, 0.12);
+
+    background: rgba(7, 17, 31, 0.88);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .logo {
     font-size: 22px;
     font-weight: 900;
     letter-spacing: 3px;
+
+    color: var(--accent);
+
+    text-shadow:
+        0 0 15px rgba(0, 230, 118, 0.25);
 }
 
 .navbar button {
     padding: 10px 20px;
 }
+
+
+/* SECTOR CONTENT */
 
 .sectors-container {
     max-width: 1300px;
@@ -203,40 +441,110 @@ button:hover {
 .welcome-section h1 {
     font-size: clamp(35px, 5vw, 60px);
     margin-bottom: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        var(--accent),
+        var(--accent-blue)
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .welcome-section p {
-    color: #999;
+    color: var(--text-secondary);
     font-size: 18px;
 }
 
 .sectors-container h2 {
     margin-bottom: 25px;
+    color: var(--text-primary);
 }
+
+
+/* SECTOR GRID */
 
 .sectors-grid {
     display: grid;
+
     grid-template-columns:
         repeat(auto-fit, minmax(220px, 1fr));
+
     gap: 20px;
 }
 
+
+/* SECTOR CARDS */
+
 .sector-card {
-    background: #141414;
-    border: 1px solid #252525;
-    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 35, 54, 0.95),
+            rgba(7, 20, 32, 0.95)
+        );
+
+    border: 1px solid rgba(0, 230, 118, 0.13);
+    border-radius: 18px;
+
     padding: 25px;
     min-height: 180px;
-    transition: 0.3s;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.18);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+/* Decorative top line */
+
+.sector-card::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        var(--accent),
+        var(--accent-blue)
+    );
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition: transform 0.35s ease;
 }
 
 .sector-card:hover {
-    transform: translateY(-5px);
-    border-color: #555;
+    transform: translateY(-8px);
+
+    border-color: rgba(0, 230, 118, 0.40);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(0, 230, 118, 0.07);
+}
+
+.sector-card:hover::before {
+    transform: scaleX(1);
 }
 
 .sector-number {
-    color: #777;
+    color: #617d91;
     font-size: 13px;
     margin-bottom: 25px;
 }
@@ -244,6 +552,8 @@ button:hover {
 .sector-card h3 {
     font-size: 20px;
     margin-bottom: 25px;
+
+    color: var(--text-primary);
 }
 
 .sector-card button {
@@ -251,7 +561,10 @@ button:hover {
     font-size: 12px;
 }
 
-/* MOBILE */
+
+/* ================================
+   MOBILE RESPONSIVE
+================================ */
 
 @media (max-width: 600px) {
 
@@ -265,9 +578,40 @@ button:hover {
 
     .beat-text {
         letter-spacing: 3px;
+        font-size: clamp(35px, 10vw, 70px);
     }
 
     .sectors-container {
         padding: 40px 20px;
+    }
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 17px;
+        letter-spacing: 1px;
+    }
+
+    .welcome-section h1 {
+        font-size: 36px;
+    }
+
+    .welcome-section p {
+        font-size: 15px;
+    }
+}
+
+/* Accessibility: reduce motion when requested */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }

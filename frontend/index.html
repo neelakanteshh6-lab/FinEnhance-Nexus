@@ -19,22 +19,43 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            overflow: hidden; /* Prevents scrollbars during animation scaling */
         }
         .container {
             width: 90%;
             max-width: 800px;
             padding: 40px 20px;
         }
+        
+        /* Pop-up Animation Keyframes */
+        @keyframes popUp {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) translateY(30px);
+            }
+            70% {
+                transform: scale(1.05) translateY(-5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
         h1 {
             font-size: 60px;
             font-weight: 800;
             letter-spacing: 4px;
             margin-bottom: 20px;
+            /* Applying the pop-up animation */
+            animation: popUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
         p {
             font-size: 20px;
             color: #cbd5e1;
             margin-bottom: 35px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.3s forwards; /* Slight delayed fade for subtext */
         }
         .btn {
             display: inline-block;
@@ -48,6 +69,8 @@
             transition: 0.3s;
             border: none;
             cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.5s forwards;
         }
         .btn:hover {
             background: #1d4ed8;
@@ -57,6 +80,8 @@
             margin-top: 25px;
             font-size: 16px;
             color: #cbd5e1;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.7s forwards;
         }
         .login-link {
             color: #60a5fa;
@@ -65,6 +90,18 @@
         }
         .login-link:hover {
             text-decoration: underline;
+        }
+
+        /* Supporting fade-in animation for other elements */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>

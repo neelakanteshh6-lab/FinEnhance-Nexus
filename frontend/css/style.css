@@ -1,13 +1,13 @@
-
 /* =========================================
    FINENHANCE NEXUS
    FUTURISTIC FINTECH THEME
    WITH ANIMATED MARKET CANDLESTICKS
 ========================================= */
 
-/* ================================
+
+/* =========================================
    GLOBAL RESET
-================================ */
+========================================= */
 
 * {
     margin: 0;
@@ -30,6 +30,7 @@
 
     --text-primary: #f1fff7;
     --text-secondary: #9bb2c5;
+
     --border: rgba(0, 230, 118, 0.16);
 
     --shadow: 0 15px 50px rgba(0, 0, 0, 0.35);
@@ -43,7 +44,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
+
+    /* IMPORTANT:
+       Allow vertical scrolling */
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 button,
@@ -57,16 +62,19 @@ button {
 }
 
 
-/* ================================
+/* =========================================
    LANDING PAGE
-================================ */
+========================================= */
 
 .landing-page {
     min-height: 100vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     position: relative;
+
     overflow: hidden;
 
     background:
@@ -97,6 +105,7 @@ button {
     height: 450px;
 
     border-radius: 50%;
+
     border: 1px solid rgba(0, 230, 118, 0.10);
 
     box-shadow:
@@ -115,12 +124,14 @@ button {
     height: 700px;
 
     border-radius: 50%;
+
     border: 1px solid rgba(56, 189, 248, 0.06);
 
     animation: rotateGlow 35s linear infinite reverse;
 }
 
 @keyframes rotateGlow {
+
     from {
         transform: rotate(0deg);
     }
@@ -132,19 +143,25 @@ button {
 
 .landing-container {
     text-align: center;
+
     width: 100%;
+
     padding: 30px;
 
     position: relative;
+
     z-index: 1;
 }
 
 .beat-text {
     font-size: clamp(45px, 9vw, 120px);
+
     font-weight: 900;
+
     letter-spacing: 8px;
 
     opacity: 0;
+
     transform: scale(0.5);
 
     color: var(--text-primary);
@@ -161,6 +178,7 @@ button {
 
 .beat-text.show {
     opacity: 1;
+
     transform: scale(1);
 }
 
@@ -170,6 +188,7 @@ button {
 
 .landing-content {
     opacity: 0;
+
     transform: translateY(30px);
 
     transition: all 1s ease;
@@ -177,6 +196,7 @@ button {
 
 .landing-content.show {
     opacity: 1;
+
     transform: translateY(0);
 }
 
@@ -184,13 +204,14 @@ button {
     margin: 15px 0;
 
     color: var(--text-secondary);
+
     font-size: 18px;
 }
 
 
-/* ================================
+/* =========================================
    GLOBAL BUTTONS
-================================ */
+========================================= */
 
 button {
     background: linear-gradient(
@@ -202,6 +223,7 @@ button {
     color: #03150c;
 
     padding: 14px 28px;
+
     border-radius: 10px;
 
     font-weight: bold;
@@ -234,6 +256,7 @@ button:active {
     color: var(--accent);
 
     font-weight: bold;
+
     text-decoration: none;
 
     transition: color 0.3s ease;
@@ -245,15 +268,17 @@ button:active {
 }
 
 
-/* ================================
+/* =========================================
    AUTHENTICATION PAGES
-================================ */
+========================================= */
 
 .auth-container {
     min-height: 100vh;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     background:
@@ -279,11 +304,13 @@ button:active {
 
 .auth-card {
     width: 100%;
+
     max-width: 450px;
 
     background: var(--bg-card);
 
     padding: 40px;
+
     border-radius: 22px;
 
     border: 1px solid var(--border);
@@ -293,25 +320,30 @@ button:active {
         0 0 40px rgba(0, 230, 118, 0.04);
 
     backdrop-filter: blur(18px);
+
     -webkit-backdrop-filter: blur(18px);
 
     animation: cardAppear 0.8s ease;
 }
 
 @keyframes cardAppear {
+
     from {
         opacity: 0;
+
         transform: translateY(25px);
     }
 
     to {
         opacity: 1;
+
         transform: translateY(0);
     }
 }
 
 .auth-card h1 {
     font-size: 34px;
+
     margin-bottom: 8px;
 
     color: var(--text-primary);
@@ -319,6 +351,7 @@ button:active {
 
 .subtitle {
     color: var(--text-secondary);
+
     margin-bottom: 30px;
 }
 
@@ -328,6 +361,7 @@ button:active {
     margin: 16px 0 8px;
 
     font-size: 14px;
+
     color: #c8d9e4;
 }
 
@@ -337,9 +371,11 @@ button:active {
     padding: 14px;
 
     border: 1px solid rgba(155, 178, 197, 0.20);
+
     border-radius: 10px;
 
     background: var(--bg-input);
+
     color: var(--text-primary);
 
     outline: none;
@@ -366,6 +402,7 @@ button:active {
 
 .auth-card button {
     width: 100%;
+
     margin-top: 25px;
 }
 
@@ -395,19 +432,30 @@ button:active {
 }
 
 
-/* ================================
+/* =========================================
    SECTORS & SUBSECTORS PAGE
-   MARKET BACKGROUND
-================================ */
+========================================= */
 
 .sectors-page,
 .subsectors-page {
+
+    /* IMPORTANT:
+       min-height allows the page to grow
+       when there are many sector cards. */
+
     min-height: 100vh;
 
     position: relative;
+
     isolation: isolate;
 
-    overflow: hidden;
+    /* IMPORTANT:
+       Do NOT use overflow: hidden here.
+       It prevents vertical scrolling. */
+
+    overflow-x: hidden;
+
+    overflow-y: auto;
 
     background:
         radial-gradient(
@@ -423,25 +471,31 @@ button:active {
         );
 }
 
-/* ================================
+
+/* =========================================
    FINANCIAL CHART GRID
-================================ */
+========================================= */
 
 .sectors-page::before,
 .subsectors-page::before {
+
     content: "";
 
-    position: absolute;
+    position: fixed;
+
     inset: 0;
 
     z-index: -2;
+
     pointer-events: none;
 
     background-image:
+
         linear-gradient(
             rgba(56, 189, 248, 0.055) 1px,
             transparent 1px
         ),
+
         linear-gradient(
             90deg,
             rgba(56, 189, 248, 0.055) 1px,
@@ -466,16 +520,18 @@ button:active {
 }
 
 
-/* ================================
-   REALISTIC MARKET CANDLESTICKS
-================================ */
+/* =========================================
+   MARKET CANDLESTICK BACKGROUND
+========================================= */
 
 .market-background {
-    position: absolute;
+
+    position: fixed;
 
     inset: 0;
 
     z-index: -1;
+
     pointer-events: none;
 
     overflow: hidden;
@@ -484,15 +540,19 @@ button:active {
 }
 
 .candle-chart {
+
     position: absolute;
 
     top: 80px;
+
     left: -5%;
 
     width: 110%;
+
     height: 650px;
 
     display: flex;
+
     align-items: flex-start;
 
     gap: 35px;
@@ -501,9 +561,13 @@ button:active {
         candleMarketMove 50s ease-in-out infinite;
 }
 
-/* Individual candles */
+
+/* =========================================
+   INDIVIDUAL CANDLES
+========================================= */
 
 .candle {
+
     position: relative;
 
     display: block;
@@ -516,14 +580,17 @@ button:active {
         candleFloat 12s ease-in-out infinite;
 }
 
+
 /* Candle wick */
 
 .candle::before {
+
     content: "";
 
     position: absolute;
 
     top: -25px;
+
     bottom: -25px;
 
     left: 50%;
@@ -537,20 +604,26 @@ button:active {
     opacity: 0.85;
 }
 
+
 /* Green bullish candle */
 
 .candle.green {
+
     background: var(--market-green);
+
     color: var(--market-green);
 
     box-shadow:
         0 0 12px rgba(0, 230, 118, 0.25);
 }
 
+
 /* Red bearish candle */
 
 .candle.red {
+
     background: var(--market-red);
+
     color: var(--market-red);
 
     box-shadow:
@@ -558,9 +631,9 @@ button:active {
 }
 
 
-/* ================================
+/* =========================================
    CANDLE POSITIONS & SIZES
-================================ */
+========================================= */
 
 .c1 {
     height: 100px;
@@ -653,11 +726,12 @@ button:active {
 }
 
 
-/* ================================
+/* =========================================
    CANDLE ANIMATIONS
-================================ */
+========================================= */
 
 @keyframes candleFloat {
+
     0%,
     100% {
         transform: translateY(0);
@@ -669,6 +743,7 @@ button:active {
 }
 
 @keyframes candleMarketMove {
+
     0% {
         transform: translateX(0);
     }
@@ -683,34 +758,43 @@ button:active {
 }
 
 
-/* ================================
+/* =========================================
    NAVBAR
-================================ */
+========================================= */
 
 .navbar {
+
     height: 70px;
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     padding: 0 5%;
 
-    border-bottom: 1px solid rgba(0, 230, 118, 0.12);
+    border-bottom:
+        1px solid rgba(0, 230, 118, 0.12);
 
-    background: rgba(7, 17, 31, 0.88);
+    background:
+        rgba(7, 17, 31, 0.88);
 
     backdrop-filter: blur(15px);
+
     -webkit-backdrop-filter: blur(15px);
 
     position: sticky;
+
     top: 0;
 
     z-index: 10;
 }
 
 .logo {
+
     font-size: 22px;
+
     font-weight: 900;
 
     letter-spacing: 3px;
@@ -726,18 +810,36 @@ button:active {
 }
 
 
-/* ================================
+/* =========================================
    SECTOR CONTENT
-================================ */
+========================================= */
 
-.sectors-container {
-    max-width: 1300px;
-
-    margin: auto;
-
-    padding: 60px 30px;
+.sectors-content {
 
     position: relative;
+
+    z-index: 2;
+
+    min-height: 100vh;
+
+    /* Important:
+       Let content determine page height. */
+
+    width: 100%;
+}
+
+.sectors-container {
+
+    width: 100%;
+
+    max-width: 1300px;
+
+    margin: 0 auto;
+
+    padding: 60px 30px 100px;
+
+    position: relative;
+
     z-index: 1;
 }
 
@@ -746,59 +848,78 @@ button:active {
 }
 
 .welcome-section h1 {
-    font-size: clamp(35px, 5vw, 60px);
+
+    font-size:
+        clamp(35px, 5vw, 60px);
 
     margin-bottom: 10px;
 
-    background: linear-gradient(
-        90deg,
-        #ffffff,
-        var(--accent),
-        var(--accent-blue)
-    );
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            var(--accent),
+            var(--accent-blue)
+        );
 
     -webkit-background-clip: text;
+
     background-clip: text;
 
     -webkit-text-fill-color: transparent;
 }
 
 .welcome-section p {
+
     color: var(--text-secondary);
 
     font-size: 18px;
 }
 
 .sectors-container h2 {
+
     margin-bottom: 25px;
 
     color: var(--text-primary);
 }
 
 
-/* ================================
+/* =========================================
    SECTOR GRID
-================================ */
+========================================= */
 
 .sectors-grid {
+
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit, minmax(220px, 1fr));
+        repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
 
     gap: 20px;
 
     position: relative;
+
     z-index: 1;
+
+    /* Important when many cards are loaded */
+
+    width: 100%;
+
+    padding-bottom: 30px;
 }
 
 
-/* ================================
+/* =========================================
    SECTOR CARDS
-================================ */
+========================================= */
 
 .sector-card {
+
     position: relative;
+
     overflow: hidden;
 
     isolation: isolate;
@@ -810,7 +931,8 @@ button:active {
             rgba(7, 20, 32, 0.95)
         );
 
-    border: 1px solid rgba(0, 230, 118, 0.13);
+    border:
+        1px solid rgba(0, 230, 118, 0.13);
 
     border-radius: 18px;
 
@@ -827,36 +949,44 @@ button:active {
         box-shadow 0.35s ease;
 }
 
+
 /* Decorative top line */
 
 .sector-card::before {
+
     content: "";
 
     position: absolute;
 
     top: 0;
+
     left: 0;
 
     width: 100%;
+
     height: 3px;
 
-    background: linear-gradient(
-        90deg,
-        var(--accent),
-        var(--accent-blue)
-    );
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--accent-blue)
+        );
 
     transform: scaleX(0);
 
     transform-origin: left;
 
-    transition: transform 0.35s ease;
+    transition:
+        transform 0.35s ease;
 }
 
 .sector-card:hover {
+
     transform: translateY(-8px);
 
-    border-color: rgba(0, 230, 118, 0.40);
+    border-color:
+        rgba(0, 230, 118, 0.40);
 
     box-shadow:
         0 15px 45px rgba(0, 0, 0, 0.35),
@@ -868,6 +998,7 @@ button:active {
 }
 
 .sector-number {
+
     color: #617d91;
 
     font-size: 13px;
@@ -876,6 +1007,7 @@ button:active {
 }
 
 .sector-card h3 {
+
     font-size: 20px;
 
     margin-bottom: 25px;
@@ -884,81 +1016,35 @@ button:active {
 }
 
 .sector-card button {
+
     padding: 9px 18px;
 
     font-size: 12px;
 }
 
 
-/* ================================
+/* =========================================
    SUBSECTOR COMPATIBILITY
-================================ */
-
-/*
-   These selectors support common
-   subsector class names.
-
-   If your subsector page reuses
-   .sector-card and .sectors-grid,
-   it will inherit the same design.
-*/
+========================================= */
 
 .subsectors-page .sectors-container,
 .subsectors-page .sectors-grid,
 .subsectors-page .sector-card {
+
     position: relative;
+
     z-index: 1;
 }
 
 
-/* ================================
+/* =========================================
    MOBILE RESPONSIVE
-================================ */
+========================================= */
 
-@media (max-width: 600px) {
-
-    .name-row {
-        grid-template-columns: 1fr;
-    }
-
-    .auth-card {
-        padding: 25px;
-    }
-
-    .beat-text {
-        letter-spacing: 3px;
-
-        font-size: clamp(
-            35px,
-            10vw,
-            70px
-        );
-    }
-
-    .sectors-container {
-        padding: 40px 20px;
-    }
-
-    .navbar {
-        padding: 0 20px;
-    }
-
-    .logo {
-        font-size: 17px;
-        letter-spacing: 1px;
-    }
-
-    .welcome-section h1 {
-        font-size: 36px;
-    }
-
-    .welcome-section p {
-        font-size: 15px;
-    }
-
-    /* Mobile candle settings */
+@media (max-width: 768px) {
 
     .candle-chart {
+
         gap: 22px;
 
         width: 140%;
@@ -973,22 +1059,99 @@ button:active {
     .candle {
         width: 8px;
     }
+
+    .c17,
+    .c18 {
+        display: none;
+    }
 }
 
 
-/* ================================
+@media (max-width: 600px) {
+
+    .name-row {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-card {
+        padding: 25px;
+    }
+
+    .beat-text {
+
+        letter-spacing: 3px;
+
+        font-size:
+            clamp(
+                35px,
+                10vw,
+                70px
+            );
+    }
+
+    .sectors-container {
+
+        padding:
+            40px 20px 80px;
+    }
+
+    .navbar {
+
+        padding:
+            0 20px;
+    }
+
+    .logo {
+
+        font-size: 17px;
+
+        letter-spacing: 1px;
+    }
+
+    .welcome-section h1 {
+
+        font-size: 36px;
+    }
+
+    .welcome-section p {
+
+        font-size: 15px;
+    }
+
+    .sectors-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 16px;
+    }
+
+    .sector-card {
+
+        min-height: 160px;
+
+        padding: 22px;
+    }
+}
+
+
+/* =========================================
    ACCESSIBILITY
-================================ */
+========================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
 
-        animation-iteration-count: 1 !important;
+        animation-duration:
+            0.01ms !important;
 
-        transition-duration: 0.01ms !important;
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
     }
 }

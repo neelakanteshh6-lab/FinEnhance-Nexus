@@ -45,8 +45,7 @@ body {
     background: var(--bg-primary);
     color: var(--text-primary);
 
-    /* IMPORTANT:
-       Allow vertical scrolling */
+    /* Allow vertical scrolling */
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -68,13 +67,11 @@ button {
 
 .landing-page {
     min-height: 100vh;
-
     display: flex;
     align-items: center;
     justify-content: center;
 
     position: relative;
-
     overflow: hidden;
 
     background:
@@ -149,7 +146,6 @@ button {
     padding: 30px;
 
     position: relative;
-
     z-index: 1;
 }
 
@@ -178,7 +174,6 @@ button {
 
 .beat-text.show {
     opacity: 1;
-
     transform: scale(1);
 }
 
@@ -196,7 +191,6 @@ button {
 
 .landing-content.show {
     opacity: 1;
-
     transform: translateY(0);
 }
 
@@ -214,11 +208,12 @@ button {
 ========================================= */
 
 button {
-    background: linear-gradient(
-        135deg,
-        var(--accent),
-        var(--accent-dark)
-    );
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent-dark)
+        );
 
     color: #03150c;
 
@@ -278,7 +273,6 @@ button:active {
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     background:
@@ -330,13 +324,11 @@ button:active {
 
     from {
         opacity: 0;
-
         transform: translateY(25px);
     }
 
     to {
         opacity: 1;
-
         transform: translateY(0);
     }
 }
@@ -439,9 +431,10 @@ button:active {
 .sectors-page,
 .subsectors-page {
 
-    /* IMPORTANT:
+    /*
        min-height allows the page to grow
-       when there are many sector cards. */
+       when there are many sector cards.
+    */
 
     min-height: 100vh;
 
@@ -449,12 +442,12 @@ button:active {
 
     isolation: isolate;
 
-    /* IMPORTANT:
-       Do NOT use overflow: hidden here.
-       It prevents vertical scrolling. */
+    /*
+       IMPORTANT:
+       Allow vertical scrolling.
+    */
 
     overflow-x: hidden;
-
     overflow-y: auto;
 
     background:
@@ -506,17 +499,19 @@ button:active {
 
     opacity: 0.65;
 
-    mask-image: linear-gradient(
-        to bottom,
-        black,
-        transparent 95%
-    );
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 95%
+        );
 
-    -webkit-mask-image: linear-gradient(
-        to bottom,
-        black,
-        transparent 95%
-    );
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 95%
+        );
 }
 
 
@@ -557,8 +552,12 @@ button:active {
 
     gap: 35px;
 
+    /*
+       FASTER HORIZONTAL MARKET MOVEMENT
+    */
+
     animation:
-        candleMarketMove 50s ease-in-out infinite;
+        candleMarketMove 20s ease-in-out infinite;
 }
 
 
@@ -576,12 +575,18 @@ button:active {
 
     border-radius: 2px;
 
+    /*
+       FASTER UP/DOWN MOVEMENT
+    */
+
     animation:
-        candleFloat 12s ease-in-out infinite;
+        candleFloat 5s ease-in-out infinite;
 }
 
 
-/* Candle wick */
+/* =========================================
+   CANDLE WICK
+========================================= */
 
 .candle::before {
 
@@ -605,7 +610,9 @@ button:active {
 }
 
 
-/* Green bullish candle */
+/* =========================================
+   GREEN BULLISH CANDLE
+========================================= */
 
 .candle.green {
 
@@ -618,7 +625,9 @@ button:active {
 }
 
 
-/* Red bearish candle */
+/* =========================================
+   RED BEARISH CANDLE
+========================================= */
 
 .candle.red {
 
@@ -738,7 +747,12 @@ button:active {
     }
 
     50% {
-        transform: translateY(-12px);
+        /*
+           Increased from 12px to 18px
+           for more visible movement.
+        */
+
+        transform: translateY(-18px);
     }
 }
 
@@ -749,7 +763,12 @@ button:active {
     }
 
     50% {
-        transform: translateX(-45px);
+        /*
+           Increased from 45px to 90px
+           for more visible horizontal movement.
+        */
+
+        transform: translateX(-90px);
     }
 
     100% {
@@ -822,8 +841,9 @@ button:active {
 
     min-height: 100vh;
 
-    /* Important:
-       Let content determine page height. */
+    /*
+       Let content determine page height.
+    */
 
     width: 100%;
 }
@@ -904,7 +924,9 @@ button:active {
 
     z-index: 1;
 
-    /* Important when many cards are loaded */
+    /*
+       Important when many cards are loaded.
+    */
 
     width: 100%;
 
@@ -950,7 +972,9 @@ button:active {
 }
 
 
-/* Decorative top line */
+/* =========================================
+   DECORATIVE TOP LINE
+========================================= */
 
 .sector-card::before {
 
@@ -1070,10 +1094,12 @@ button:active {
 @media (max-width: 600px) {
 
     .name-row {
+
         grid-template-columns: 1fr;
     }
 
     .auth-card {
+
         padding: 25px;
     }
 

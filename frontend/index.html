@@ -1,42 +1,102 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinEnhance Nexus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <title>Beat Inflation | FinEnhance</title>
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-    <link rel="stylesheet" href="css/style.css">
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 60px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #cbd5e1;
+            margin-bottom: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .login-text {
+            margin-top: 25px;
+            font-size: 16px;
+            color: #cbd5e1;
+        }
+
+        .login-link {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
-<body class="landing-page">
+<body>
 
-    <main class="landing-container">
+    <div class="container">
 
-        <div id="beatText" class="beat-text">
-            BEAT INFLATION
+        <h1>BEAT INFLATION</h1>
+
+        <p>Make informed decisions. Explore the stock market.</p>
+
+        <!-- GET STARTED -->
+        <a href="./login.html" class="btn">GET STARTED</a>
+
+        <div class="login-text">
+            Already have an account?
+            <a href="./login.html" class="login-link">Login</a>
         </div>
 
-        <div id="landingContent" class="landing-content">
-
-            <p>
-                Make informed decisions. Explore the stock market.
-            </p>
-
-            <button onclick="goToSignup()">
-                GET STARTED
-            </button>
-
-            <p class="login-link">
-                Already have an account?
-                <a href="login.html">Login</a>
-            </p>
-
-        </div>
-
-    </main>
-
-    <script src="js/index.js"></script>
+    </div>
 
 </body>
 </html>
+```

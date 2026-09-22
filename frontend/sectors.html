@@ -3,50 +3,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sectors | FinEnhance</title>
+
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* =========================================
+           MARKET BACKGROUND
+        ========================================= */
+
+        .market-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.20;
+        }
+
+        .candle-chart {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+        }
+
+        .candle {
+            position: absolute;
+            bottom: 0;
+            width: 18px;
+            border-radius: 3px;
+            opacity: 0.8;
+        }
+
+        /* Candle wick */
+        .candle::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 130%;
+            top: -15%;
+            background: inherit;
+        }
+
+        /* Green candles */
+        .candle.green {
+            background: #00ff9c;
+            box-shadow:
+                0 0 10px rgba(0, 255, 156, 0.5),
+                0 0 20px rgba(0, 255, 156, 0.2);
+        }
+
+        /* Red candles */
+        .candle.red {
+            background: #ff4d6d;
+            box-shadow:
+                0 0 10px rgba(255, 77, 109, 0.5),
+                0 0 20px rgba(255, 77, 109, 0.2);
+        }
+
+        /* =========================================
+           CANDLE POSITIONS
+        ========================================= */
+
+        .c1 {
+            left: 3%;
+            height: 100px;
+            bottom: 12%;
+        }
+
+        .c2 {
+            left: 8%;
+            height: 160px;
+            bottom: 25%;
+        }
+
+        .c3 {
+            left: 13%;
+            height: 80px;
+            bottom: 18%;
+        }
+
+        .c4 {
+            left: 18%;
+            height: 190px;
+            bottom: 35%;
+        }
+
+        .c5 {
+            left: 23%;
+            height: 120px;
+            bottom: 22%;
+        }
+
+        .c6 {
+            left: 28%;
+            height: 220px;
+            bottom: 42%;
+        }
+
+        .c7 {
+            left: 33%;
+            height: 130px;
+            bottom: 28%;
+        }
+
+        .c8 {
+            left: 38%;
+            height: 250px;
+            bottom: 45%;
+        }
+
+        .c9 {
+            left: 43%;
+            height: 170px;
+            bottom: 32%;
+        }
+
+        .c10 {
+            left: 48%;
+            height: 110px;
+            bottom: 20%;
+        }
+
+        .c11 {
+            left: 53%;
+            height: 270px;
+            bottom: 48%;
+        }
+
+        .c12 {
+            left: 58%;
+            height: 150px;
+            bottom: 30%;
+        }
+
+        .c13 {
+            left: 63%;
+            height: 300px;
+            bottom: 50%;
+        }
+
+        .c14 {
+            left: 68%;
+            height: 200px;
+            bottom: 38%;
+        }
+
+        .c15 {
+            left: 73%;
+            height: 130px;
+            bottom: 25%;
+        }
+
+        .c16 {
+            left: 78%;
+            height: 280px;
+            bottom: 45%;
+        }
+
+        .c17 {
+            left: 85%;
+            height: 180px;
+            bottom: 30%;
+        }
+
+        .c18 {
+            left: 92%;
+            height: 320px;
+            bottom: 50%;
+        }
+
+        /* =========================================
+           PAGE CONTENT
+        ========================================= */
+
+        .sectors-content {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            position: relative;
+            z-index: 10;
+        }
+
+        .sectors-container {
+            position: relative;
+            z-index: 5;
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+        ========================================= */
+
+        @media (max-width: 768px) {
+
+            .candle {
+                width: 12px;
+            }
+
+            .c1 {
+                left: 2%;
+            }
+
+            .c2 {
+                left: 8%;
+            }
+
+            .c3 {
+                left: 14%;
+            }
+
+            .c4 {
+                left: 20%;
+            }
+
+            .c5 {
+                left: 26%;
+            }
+
+            .c6 {
+                left: 32%;
+            }
+
+            .c7 {
+                left: 38%;
+            }
+
+            .c8 {
+                left: 44%;
+            }
+
+            .c9 {
+                left: 50%;
+            }
+
+            .c10 {
+                left: 56%;
+            }
+
+            .c11 {
+                left: 62%;
+            }
+
+            .c12 {
+                left: 68%;
+            }
+
+            .c13 {
+                left: 74%;
+            }
+
+            .c14 {
+                left: 80%;
+            }
+
+            .c15 {
+                left: 86%;
+            }
+
+            .c16 {
+                left: 92%;
+            }
+
+            .c17,
+            .c18 {
+                display: none;
+            }
+        }
+    </style>
 </head>
+
 <body class="sectors-page">
 
-    <header class="navbar">
+    <!-- =========================================
+         MARKET CANDLESTICK BACKGROUND
+    ========================================== -->
 
-        <div class="logo">
-            FINENHANCE
+    <div class="market-background" aria-hidden="true">
+
+        <div class="candle-chart">
+
+            <span class="candle green c1"></span>
+
+            <span class="candle red c2"></span>
+
+            <span class="candle green c3"></span>
+
+            <span class="candle green c4"></span>
+
+            <span class="candle red c5"></span>
+
+            <span class="candle green c6"></span>
+
+            <span class="candle red c7"></span>
+
+            <span class="candle green c8"></span>
+
+            <span class="candle green c9"></span>
+
+            <span class="candle red c10"></span>
+
+            <span class="candle green c11"></span>
+
+            <span class="candle red c12"></span>
+
+            <span class="candle green c13"></span>
+
+            <span class="candle green c14"></span>
+
+            <span class="candle red c15"></span>
+
+            <span class="candle green c16"></span>
+
+            <span class="candle red c17"></span>
+
+            <span class="candle green c18"></span>
+
         </div>
 
-        <button id="logoutButton">
-            LOGOUT
-        </button>
+    </div>
 
-    </header>
 
-    <main class="sectors-container">
+    <!-- =========================================
+         MAIN WEBSITE CONTENT
+    ========================================== -->
 
-        <div class="welcome-section">
+    <div class="sectors-content">
 
-            <h1>
-                Welcome, Dear Investor <span id="userName"></span>
-            </h1>
 
-            <p>
-                Explore sectors of the Indian stock market
-            </p>
+        <!-- =========================================
+             NAVIGATION BAR
+        ========================================== -->
 
-        </div>
+        <header class="navbar">
 
-        <section>
-
-            <h2>Stock Market Sectors</h2>
-
-            <div id="sectorsGrid" class="sectors-grid">
-                <p>Loading sectors...</p>
+            <div class="logo">
+                FINENHANCE
             </div>
 
-        </section>
+            <button id="logoutButton">
+                LOGOUT
+            </button>
 
-    </main>
+        </header>
+
+
+        <!-- =========================================
+             SECTORS MAIN CONTAINER
+        ========================================== -->
+
+        <main class="sectors-container">
+
+
+            <!-- =========================================
+                 WELCOME SECTION
+            ========================================== -->
+
+            <div class="welcome-section">
+
+                <h1>
+                    Welcome, Dear Investor
+                    <span id="userName"></span>
+                </h1>
+
+                <p>
+                    Explore sectors of the Indian stock market
+                </p>
+
+            </div>
+
+
+            <!-- =========================================
+                 STOCK MARKET SECTORS
+            ========================================== -->
+
+            <section>
+
+                <h2>
+                    Stock Market Sectors
+                </h2>
+
+
+                <!-- =====================================
+                     SECTORS WILL BE LOADED HERE
+                ====================================== -->
+
+                <div
+                    id="sectorsGrid"
+                    class="sectors-grid"
+                >
+
+                    <p>
+                        Loading sectors...
+                    </p>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+    </div>
+
+
+    <!-- =========================================
+         SECTORS JAVASCRIPT
+    ========================================== -->
 
     <script src="js/sectors.js"></script>
+
 
 </body>
 </html>

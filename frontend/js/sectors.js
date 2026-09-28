@@ -44,12 +44,18 @@ async function loadSectors() {
             `;
 
             card.querySelector("button")
-                .addEventListener("click", () => {
-                    loadSubSectors(
-                        sector.id,
-                        sector.name
-                    );
-                });
+    .addEventListener("click", () => {
+
+        const url =
+            `stocks.html` +
+            `?sector_id=${encodeURIComponent(sectorId)}` +
+            `&sector=${encodeURIComponent(sectorName)}` +
+            `&sub_sector_id=${encodeURIComponent(subSector.id)}` +
+            `&sub_sector=${encodeURIComponent(subSector.name)}`;
+
+        window.location.href = url;
+
+    });
 
             sectorsGrid.appendChild(card);
         });

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stocks | FinEnhance</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="stocks-page">
+
+    <!-- =========================================
+         ANIMATED MARKET BACKGROUND
+    ========================================== -->
+
+    <div class="market-background" aria-hidden="true">
+
+        <div class="candle-chart">
+
+            <div class="candle-group">
+
+                <span class="candle green c1"></span>
+                <span class="candle red c2"></span>
+                <span class="candle green c3"></span>
+                <span class="candle green c4"></span>
+                <span class="candle red c5"></span>
+                <span class="candle green c6"></span>
+                <span class="candle red c7"></span>
+                <span class="candle green c8"></span>
+                <span class="candle green c9"></span>
+                <span class="candle red c10"></span>
+                <span class="candle green c11"></span>
+                <span class="candle red c12"></span>
+                <span class="candle green c13"></span>
+                <span class="candle green c14"></span>
+                <span class="candle red c15"></span>
+                <span class="candle green c16"></span>
+                <span class="candle red c17"></span>
+                <span class="candle green c18"></span>
+
+            </div>
+
+            <div class="candle-group">
+
+                <span class="candle green c1"></span>
+                <span class="candle red c2"></span>
+                <span class="candle green c3"></span>
+                <span class="candle green c4"></span>
+                <span class="candle red c5"></span>
+                <span class="candle green c6"></span>
+                <span class="candle red c7"></span>
+                <span class="candle green c8"></span>
+                <span class="candle green c9"></span>
+                <span class="candle red c10"></span>
+                <span class="candle green c11"></span>
+                <span class="candle red c12"></span>
+                <span class="candle green c13"></span>
+                <span class="candle green c14"></span>
+                <span class="candle red c15"></span>
+                <span class="candle green c16"></span>
+                <span class="candle red c17"></span>
+                <span class="candle green c18"></span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <div class="stocks-content">
+
+        <!-- =====================================
+             NAVIGATION BAR
+        ====================================== -->
+
+        <header class="navbar">
+
+            <div class="logo">
+                FINENHANCE
+            </div>
+
+            <button id="logoutButton">
+                LOGOUT
+            </button>
+
+        </header>
+
+
+        <!-- =====================================
+             STOCK PAGE
+        ====================================== -->
+
+        <main class="stocks-container">
+
+
+            <!-- =================================
+                 HEADER
+            ================================== -->
+
+            <section class="stocks-header">
+
+                <button
+                    id="backButton"
+                    class="back-button"
+                >
+                    ← BACK TO SUB-SECTORS
+                </button>
+
+
+                <div class="stock-heading">
+
+                    <p class="stock-breadcrumb">
+                        INDIAN STOCK MARKET
+                    </p>
+
+                    <h1 id="subSectorName">
+                        Loading...
+                    </h1>
+
+                    <p id="sectorName">
+                        Loading sector...
+                    </p>
+
+                </div>
+
+
+                <div class="market-status">
+
+                    <span
+                        id="marketStatusDot"
+                        class="status-dot"
+                    ></span>
+
+                    <span id="marketStatusText">
+                        MARKET DATA
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 MARKET SUMMARY
+            ================================== -->
+
+            <section class="market-summary">
+
+                <div class="summary-card">
+
+                    <span>
+                        STOCKS
+                    </span>
+
+                    <strong id="stockCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>
+                        ADVANCING
+                    </span>
+
+                    <strong
+                        id="advancingCount"
+                        class="positive"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>
+                        DECLINING
+                    </span>
+
+                    <strong
+                        id="decliningCount"
+                        class="negative"
+                    >
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>
+                        LAST UPDATED
+                    </span>
+
+                    <strong id="lastUpdated">
+                        --
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 SEARCH
+            ================================== -->
+
+            <section class="stock-controls">
+
+                <input
+                    type="text"
+                    id="stockSearch"
+                    placeholder="Search company or symbol..."
+                >
+
+                <select id="stockSort">
+
+                    <option value="name">
+                        Sort by Name
+                    </option>
+
+                    <option value="price">
+                        Sort by Price
+                    </option>
+
+                    <option value="change">
+                        Sort by Change %
+                    </option>
+
+                    <option value="volume">
+                        Sort by Volume
+                    </option>
+
+                </select>
+
+            </section>
+
+
+            <!-- =================================
+                 STOCK TABLE
+            ================================== -->
+
+            <section class="stock-market-panel">
+
+                <div class="table-wrapper">
+
+                    <table class="stock-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    #
+                                </th>
+
+                                <th>
+                                    COMPANY
+                                </th>
+
+                                <th>
+                                    SYMBOL
+                                </th>
+
+                                <th>
+                                    LTP
+                                </th>
+
+                                <th>
+                                    CHANGE
+                                </th>
+
+                                <th>
+                                    CHANGE %
+                                </th>
+
+                                <th>
+                                    OPEN
+                                </th>
+
+                                <th>
+                                    HIGH
+                                </th>
+
+                                <th>
+                                    LOW
+                                </th>
+
+                                <th>
+                                    VOLUME
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="stocksTableBody">
+
+                            <tr>
+
+                                <td
+                                    colspan="10"
+                                    class="loading-cell"
+                                >
+                                    Loading stock market data...
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================
+                 PRICE CHART
+            ================================== -->
+
+            <section
+                id="chartSection"
+                class="price-chart-section"
+            >
+
+                <div class="chart-header">
+
+                    <div>
+
+                        <p>
+                            PRICE MOVEMENT
+                        </p>
+
+                        <h2 id="chartStockName">
+                            Select a stock
+                        </h2>
+
+                    </div>
+
+                    <div>
+
+                        <strong id="chartPrice">
+                            ₹ --
+                        </strong>
+
+                        <span id="chartChange">
+                            --
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-container">
+
+                    <svg
+                        id="priceChart"
+                        viewBox="0 0 1000 350"
+                        preserveAspectRatio="none"
+                    >
+
+                        <polyline
+                            id="chartLine"
+                            points=""
+                        />
+
+                    </svg>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="js/stocks.js"></script>
+
+</body>
+</html>
